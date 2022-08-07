@@ -3,6 +3,7 @@ package com.everis.base;
 import com.everis.base.models.Book;
 import com.everis.base.models.User;
 import com.google.gson.JsonObject;
+import io.cucumber.core.gherkin.vintage.internal.gherkin.ast.Scenario;
 import io.cucumber.java.Before;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -25,19 +26,14 @@ import static org.hamcrest.Matchers.equalTo;
 public class JuegosService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JuegosService.class);
-    static private final String BASE_URL = "https://www.freetogame.com/api/games/";
+    private String BASE_URL = "https://www.freetogame.com/api/games/";
 
     private static RequestSpecification requestSpec;
     private static ResponseSpecification responseSpec;
 
-    private Response response;
-    private RequestSpecBuilder builder;
-    private RequestSpecification requestSpecification;
-    private String bodyPost;
 
     @Before
     public void init() {
-
         LOGGER.info(" Inicializa el constructor request ");
         requestSpec = new RequestSpecBuilder()
                 .setBaseUri(BASE_URL)
@@ -52,7 +48,6 @@ public class JuegosService {
 
     @Step("obtiene lista de juegos")
     public void listJuegos(String platform, String category) {
-
         given().
                 spec(requestSpec).
                 queryParam("platform", platform).
@@ -70,8 +65,8 @@ public class JuegosService {
 
         System.out.println("----------------------------------------------------------------------------------");
     }
+    @Step("obtiene juegos")
     public void getJuegos(String platform, String category) {
-
         given()
                 .spec(requestSpec)
                 .queryParam("platform", platform).
@@ -82,17 +77,22 @@ public class JuegosService {
                 and();
     }
 
-
+    @Step("valida los estados")
     public void validateStatusCode(int i) {
-        assertThat(lastResponse().statusCode(), is(i));
-
+        System.out.println("--------------------------------------------------");
         System.out.println(stadoCorrecto(i));
+        System.out.println("--------------------------------------------------");
+        assertThat(lastResponse().statusCode(), is(i));
     }
+
+
 
     public String stadoCorrecto(int i){
         String resultado = "";
         if(lastResponse().statusCode() == i){
             resultado = "Se validó el estado: " + i;
+        }else{
+            resultado = "Estado Incorrecto: " + i;
         }
         return  resultado;
     }

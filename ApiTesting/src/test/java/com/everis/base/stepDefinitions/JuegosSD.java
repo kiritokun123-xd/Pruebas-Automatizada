@@ -1,9 +1,7 @@
 package com.everis.base.stepDefinitions;
 
 import com.everis.base.JuegosService;
-import com.everis.base.NetflixService;
 //import com.everis.base.steps.NetflixSteps;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -34,12 +32,8 @@ public class JuegosSD {
         juegos.getJuegos(platform, category);
     }
 
-    @Given("se abre el navegador")
-    public void seAbreElNavegador() {
 
-    }
 
-    @When("se digita mal la URL {string}")
-    public void seDigitaMalLaURL(String url) {
-    }
+
+
 }
