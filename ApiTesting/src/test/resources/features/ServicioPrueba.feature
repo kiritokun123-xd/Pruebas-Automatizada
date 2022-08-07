@@ -7,7 +7,8 @@ Feature: Servicio de Prueba
   Scenario: Consulta del Servicio
     Given la URL_BASE del Servicio responde 200
     When consulto el Servicio con el Path "/sinkministatement.php?CUSTOMER_ID=68195&PASSWORD=1234!&Account_No=1"
-    Then el codigo de respuesta es 200
+    Then el codigo de respuesta es 400
     And valido el resultado
+    And valido tipo de data
 
 

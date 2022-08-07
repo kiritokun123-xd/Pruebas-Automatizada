@@ -55,10 +55,11 @@ public class NetflixService {
                 spec(requestSpec).
                 queryParam("page", page).
                 when().
-                get("users").
+                get("users/{id}").
                 then().
                 spec(responseSpec).
                 and();
+
     }
 
 
