@@ -27,7 +27,6 @@ public class JuegosService {
     private static final Logger LOGGER = LoggerFactory.getLogger(JuegosService.class);
     static private final String BASE_URL = "https://www.freetogame.com/api/games/";
 
-    private String cadena;
     private static RequestSpecification requestSpec;
     private static ResponseSpecification responseSpec;
 
@@ -37,37 +36,18 @@ public class JuegosService {
     private String bodyPost;
 
     @Before
-    public String cambioUrl(String url){
-        cadena = "";
-        return cadena;
-    }
-
-    @Before
     public void init() {
-        if(cadena.equals("")){
-            LOGGER.info(" Inicializa el constructor request ");
-            requestSpec = new RequestSpecBuilder()
-                    .setBaseUri(BASE_URL)
-                    .build();
 
-            LOGGER.info(" Inicializa el constructor response ");
-            responseSpec = new ResponseSpecBuilder()
-                    .expectStatusCode(200)
-                    .expectContentType(ContentType.JSON)
-                    .build();
-        }else{
-            LOGGER.info(" Inicializa el constructor request ");
-            requestSpec = new RequestSpecBuilder()
-                    .setBaseUri(cadena)
-                    .build();
+        LOGGER.info(" Inicializa el constructor request ");
+        requestSpec = new RequestSpecBuilder()
+                .setBaseUri(BASE_URL)
+                .build();
 
-            LOGGER.info(" Inicializa el constructor response ");
-            responseSpec = new ResponseSpecBuilder()
-                    .expectStatusCode(200)
-                    .expectContentType(ContentType.JSON)
-                    .build();
-        }
-
+        LOGGER.info(" Inicializa el constructor response ");
+        responseSpec = new ResponseSpecBuilder()
+                .expectStatusCode(200)
+                .expectContentType(ContentType.JSON)
+                .build();
     }
 
     @Step("obtiene lista de juegos")

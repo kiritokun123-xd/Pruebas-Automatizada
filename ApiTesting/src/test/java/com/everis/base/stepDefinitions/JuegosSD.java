@@ -41,6 +41,5 @@ public class JuegosSD {
 
     @When("se digita mal la URL {string}")
     public void seDigitaMalLaURL(String url) {
-        juegos.cambioUrl(url);
     }
 }

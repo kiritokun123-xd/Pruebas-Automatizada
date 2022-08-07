@@ -12,9 +12,5 @@ Feature: Servicio de juegos
     When se digita mas plataforma "ps" y categoria "shuter"
     Then valida que la respuesta sea 404
 
-  @Scenario2:
-  Scenario: Consulta error bad request
-    Given  se abre el navegador
-    When se digita mal la URL "https://www.freetogame.com/api/game%"
-    Then valida que la respuesta sea 400
+
 
